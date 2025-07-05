@@ -1,0 +1,192 @@
+/* =================================
+   Font Imports & General Setup
+   ================================= */
+@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@700&family=Nunito:wght@400;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /* Enhanced: A simple, dark background to make the "notepad" pop */
+    font-family: 'Nunito', sans-serif;
+    background: #414345;
+    background: -webkit-linear-gradient(to right, #232526, #414345);
+    background: linear-gradient(to right, #232526, #414345);
+    min-height: 100vh;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+/* =================================
+   Main Notepad Container
+   ================================= */
+.container {
+    /* Enhanced: Notepad texture background with horizontal and vertical lines */
+    background-color: #fdfdf6; /* A paper-like off-white */
+    background-image:
+        linear-gradient(90deg, rgba(255, 100, 100, 0.4) 1px, transparent 1px),
+        repeating-linear-gradient(180deg, transparent, transparent 2.2em, #d8e6f3 2.2em, #d8e6f3 calc(2.2em + 1px));
+    background-size: 100% 100%, 100% 2.2em; /* Control line spacing */
+    background-position: 45px 0, 0 10px; /* Position the vertical margin line */
+
+    border-radius: 5px; /* Sharper edges for a paper look */
+    padding: 40px 40px 40px 60px; /* Increased left padding for margin line */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 550px;
+    margin-top: 20px;
+    animation: fadeInUp 0.6s ease-out;
+    border: 1px solid #ccc;
+}
+
+/* =================================
+   Typography & Headings
+   ================================= */
+h1 {
+    /* Enhanced: Handwritten font for the title */
+    font-family: 'Kalam', cursive;
+    font-size: 3rem;
+    margin-bottom: 30px;
+    text-align: center;
+    color: #2c3e50;
+    /* Removed gradient to fit the notepad theme */
+    -webkit-text-fill-color: initial;
+    text-shadow: none;
+}
+
+/* =================================
+   To-Do List Styling
+   ================================= */
+ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 30px;
+}
+
+li {
+    background: transparent; /* Makes item blend with notepad */
+    /* Enhanced: Significantly larger margin for spacing */
+    margin: 20px 0;
+    /* Enhanced: Significantly larger padding to increase box size */
+    padding: 15px 10px;
+    border-radius: 8px;
+    /* Enhanced: Subtle shadow to look like a sticky note or different paper */
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+    font-weight: 600;
+    /* Enhanced: Increased font size */
+    font-size: 1.2rem;
+    position: relative;
+    transition: all 0.3s ease;
+    border: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+li:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Note: Using classes like .task-completed is more robust than :nth-child */
+
+/* Style for Completed Tasks */
+li:nth-child(1),
+li:nth-child(2) { /* Assuming these are completed */
+    /* Enhanced: Looks like a green highlighter mark */
+    background: linear-gradient(105deg, rgba(167, 255, 188, 0.7), rgba(167, 255, 188, 0.5));
+    color: #444;
+    text-decoration: line-through;
+    border-color: #a4d8b0;
+}
+
+/* Style for Pending/Important Tasks */
+li:nth-child(n+3) { /* Assuming these are pending */
+    /* Enhanced: Looks like a pink/red highlighter mark */
+    background: linear-gradient(105deg, rgba(255, 197, 197, 0.7), rgba(255, 197, 197, 0.5));
+    color: #8B0000;
+    border-color: #ffc2c2;
+}
+
+/* =================================
+   Form & Input Styling
+   ================================= */
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+input[type="text"] {
+    padding: 16px 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-family: 'Nunito', sans-serif; /* Consistent font */
+    background: #ffffff;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+input[type="text"]:focus {
+    border-color: #888;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+}
+
+button[type="submit"] {
+    height: 80px;
+    width:80px;
+    padding: 16px 20px;
+    background: #b0bb22; /* Solid, classic button color */
+    border: none;
+    color: white;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: 600;
+    font-family: 'Nunito', sans-serif;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+button[type="submit"]:hover {
+    background: #34495e;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+}
+
+/* =================================
+   Responsiveness & Animations
+   ================================= */
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+    .container {
+        padding: 30px 30px 30px 40px;
+    }
+    h1 {
+        font-size: 2.4rem;
+    }
+    li {
+        font-size: 1rem;
+        padding: 15px 10px;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
